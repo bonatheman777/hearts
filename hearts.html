@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You ❤️</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #ffd6e7, #ff99bb);
+      text-align: center;
+      padding-top: 100px;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #heart {
+      font-size: 90px;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+      user-select: none;
+    }
+
+    #message {
+      margin-top: 28px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #800040;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 18px;
+      line-height: 1.35;
+    }
+
+    .hint {
+      margin-top: 10px;
+      font-size: 14px;
+      opacity: 0.75;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="heart">❤️</div>
+  <div id="message">Click the heart.</div>
+  <div class="hint">(keep clicking)</div>
+
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    const heart = document.getElementById("heart");
+    const message = document.getElementById("message");
+
+    let size = 1;
+    let clickCount = 0;
+
+    const messages = [
+      "I love your smile.",
+      "I love your laugh.",
+      "I love how kind you are.",
+      "I love talking to you.",
+      "I love the way you care.",
+      "I love the way you make me feel.",
+      "I love you more every day.",
+      "You are my favorite person.",
+      "You make my world brighter.",
+      "I love you Shar 💜"
+    ];
+
+    heart.addEventListener("click", () => {
+      if (clickCount >= messages.length) return;
+
+      message.textContent = messages[clickCount];
+
+      // grow heart each click
+      size += 0.18;
+      heart.style.transform = `scale(${size})`;
+
+      // confetti on last click
+      if (clickCount === messages.length - 1) {
+        confetti({
+          particleCount: 180,
+          spread: 85,
+          origin: { y: 0.65 }
+        });
+
+        // little extra burst (optional)
+        setTimeout(() => {
+          confetti({
+            particleCount: 120,
+            spread: 120,
+            origin: { y: 0.55 }
+          });
+        }, 250);
+      }
+
+      clickCount++;
+    });
+  </script>
+
+</body>
+</html>
