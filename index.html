@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>For You ❤️</title>
   <style>
@@ -10,16 +10,26 @@
       background: linear-gradient(to bottom, #ffd6e7, #ff99bb);
       text-align: center;
       margin: 0;
-      padding-top: 80px;
-      overflow: hidden;
+      padding: 60px 16px;
+      overflow-x: hidden;
+    }
+
+    /* This box reserves vertical space so the message never gets covered */
+    .heart-zone {
+      height: 340px;              /* reserved space (tune if you want more) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;        /* extra gap (about ~5 lines) */
     }
 
     #heart {
       font-size: 90px;
       cursor: pointer;
-      transition: transform 0.25s ease;
       user-select: none;
-      margin-bottom: 120px; /* big space under heart */
+      transition: transform 0.25s ease;
+      transform-origin: center center;
+      will-change: transform;
     }
 
     #message {
@@ -29,7 +39,7 @@
       max-width: 650px;
       margin: 0 auto;
       line-height: 1.4;
-      min-height: 100px; /* reserves space for text */
+      min-height: 90px; /* keeps layout steady */
     }
 
     .hint {
@@ -41,11 +51,13 @@
 </head>
 <body>
 
-  <div id="heart">❤️</div>
+  <div class="heart-zone">
+    <div id="heart">❤️</div>
+  </div>
+
   <div id="message">Click the heart.</div>
   <div class="hint">(keep clicking)</div>
 
-  <!-- Confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
@@ -68,35 +80,5 @@
       "I love you Shar 💜"
     ];
 
-    heart.addEventListener("click", () => {
-      if (clickCount >= messages.length) return;
-
-      message.textContent = messages[clickCount];
-
-      // grow heart each click
-      size += 0.18;
-      heart.style.transform = `scale(${size})`;
-
-      // confetti on last click
-      if (clickCount === messages.length - 1) {
-        confetti({
-          particleCount: 180,
-          spread: 85,
-          origin: { y: 0.65 }
-        });
-
-        setTimeout(() => {
-          confetti({
-            particleCount: 120,
-            spread: 120,
-            origin: { y: 0.55 }
-          });
-        }, 250);
-      }
-
-      clickCount++;
-    });
-  </script>
-
-</body>
-</html>
+    heart.a
+::contentReference[oaicite:0]{index=0}
