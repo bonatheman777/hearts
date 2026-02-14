@@ -6,58 +6,69 @@
   <title>For You ❤️</title>
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #ffd6e7, #ff99bb);
-      text-align: center;
-      margin: 0;
-      padding: 60px 16px;
-      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
-    /* This box reserves vertical space so the message never gets covered */
-    .heart-zone {
-      height: 340px;              /* reserved space (tune if you want more) */
+    /* Top half for the heart */
+    .top {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 40px;        /* extra gap (about ~5 lines) */
+    }
+
+    /* Bottom half for the message */
+    .bottom {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
     }
 
     #heart {
       font-size: 90px;
       cursor: pointer;
-      user-select: none;
       transition: transform 0.25s ease;
-      transform-origin: center center;
-      will-change: transform;
+      user-select: none;
     }
 
     #message {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 700;
       color: #800040;
       max-width: 650px;
-      margin: 0 auto;
       line-height: 1.4;
-      min-height: 90px; /* keeps layout steady */
     }
 
     .hint {
-      margin-top: 10px;
       font-size: 14px;
       opacity: 0.75;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-  <div class="heart-zone">
+  <div class="top">
     <div id="heart">❤️</div>
   </div>
 
-  <div id="message">Click the heart.</div>
-  <div class="hint">(keep clicking)</div>
+  <div class="bottom">
+    <div>
+      <div id="message">Click the heart.</div>
+      <div class="hint">(keep clicking)</div>
+    </div>
+  </div>
 
+  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
@@ -80,5 +91,33 @@
       "I love you Shar 💜"
     ];
 
-    heart.a
-::contentReference[oaicite:0]{index=0}
+    heart.addEventListener("click", () => {
+      if (clickCount >= messages.length) return;
+
+      message.textContent = messages[clickCount];
+
+      size += 0.18;
+      heart.style.transform = `scale(${size})`;
+
+      if (clickCount === messages.length - 1) {
+        confetti({
+          particleCount: 180,
+          spread: 85,
+          origin: { y: 0.65 }
+        });
+
+        setTimeout(() => {
+          confetti({
+            particleCount: 120,
+            spread: 120,
+            origin: { y: 0.55 }
+          });
+        }, 250);
+      }
+
+      clickCount++;
+    });
+  </script>
+
+</body>
+</html>
