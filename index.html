@@ -9,8 +9,8 @@
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #ffd6e7, #ff99bb);
       text-align: center;
-      padding-top: 100px;
       margin: 0;
+      padding-top: 80px;
       overflow: hidden;
     }
 
@@ -19,18 +19,17 @@
       cursor: pointer;
       transition: transform 0.25s ease;
       user-select: none;
+      margin-bottom: 120px; /* big space under heart */
     }
 
     #message {
-      margin-top: 28px;
       font-size: 24px;
       font-weight: 700;
       color: #800040;
       max-width: 650px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 18px;
-      line-height: 1.35;
+      margin: 0 auto;
+      line-height: 1.4;
+      min-height: 100px; /* reserves space for text */
     }
 
     .hint {
@@ -86,7 +85,6 @@
           origin: { y: 0.65 }
         });
 
-        // little extra burst (optional)
         setTimeout(() => {
           confetti({
             particleCount: 120,
